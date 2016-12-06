@@ -6,22 +6,24 @@ package com.miked;
 public class Item {
 
     private static int IDcounter = 1;
-    private int priority = 1;
+    private static int priority = 1;
     private String item;
     protected int itemIDnum;
+    protected int currentPriority;
 
 
     Item(String item){
-        //this.priority = priority +1;
+        this.currentPriority = priority;
         this.item = item;
-        //this.itemIDnum = IDcounter;
+        this.itemIDnum = IDcounter;
 
         IDcounter++;
+        priority++;
     }
 
 
-    Item( String item, int ID){
-        //this.priority = priority;
+    Item(int priority, String item, int ID){
+        this.priority = priority;
         this.item = item;
         this.itemIDnum = ID;
 
@@ -41,7 +43,7 @@ public class Item {
     }
 
     public void setPriority(int priority) {
-        this.priority = priority;
+        this.currentPriority = priority;
     }
 
     public String getItem() {
@@ -62,9 +64,12 @@ public class Item {
 
     public String lineForfile(){
         String IDFF = Integer.toString(this.itemIDnum);
-        String priorityFF = Integer.toString(this.priority);
+        String priorityFF = Integer.toString(this.currentPriority);
         return (IDFF + ";" + this.item + ";" + priorityFF);
 
+    }
+    public String toString(){
+        return ("Priority: " + this.currentPriority + " " + this.item + " ID: " + this.itemIDnum);
     }
 
 }

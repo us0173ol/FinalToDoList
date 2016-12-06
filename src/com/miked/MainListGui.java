@@ -17,6 +17,7 @@ public class MainListGui extends JFrame{
     private JTextField addItemTextField;
     private JList<Item> MainList1;
     private JComboBox<Integer> priorityCB;
+    private JLabel priorityTextField;
 
     private  DefaultListModel<Item> mainlistModel;
 
@@ -74,9 +75,9 @@ public class MainListGui extends JFrame{
 
                     mainlistModel.addElement(i);
 
-                    for (int j = 1; j < mainlistModel.getSize(); j++) {
-                        priorityCB.removeItem(j+1);
-                        priorityCB.addItem(j+1);
+                    for (int j = 1; j <= mainlistModel.getSize(); j++) {
+                        priorityCB.removeItem(j);
+                        priorityCB.addItem(j);
                     }
                     addItemTextField.setText("");
                 }
@@ -84,5 +85,25 @@ public class MainListGui extends JFrame{
         });
 
 
+        priorityCB.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                int assignNewPriority = priorityCB.getSelectedIndex()+1;
+                Item selectedItem= MainList1.getSelectedValue();
+                if (selectedItem != null){
+                    selectedItem.getPriority();
+                }
+
+                for(int i =0; i < mainlistModel.getSize(); i++){
+                    if( mainlistModel.getElementAt(i).getPriority()==assignNewPriority ){
+                        mainlistModel.getElementAt(i).setPriority(selectedItem.getPriority());
+                        MainList1.getSelectedValue().setPriority(assignNewPriority);
+                    }
+
+
+                }
+            }
+        });
     }
 }
