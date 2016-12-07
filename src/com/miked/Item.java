@@ -71,7 +71,7 @@ public class Item implements Comparable<Item>{
 
     }
     public String toString(){
-        return ("Priority: " + this.currentPriority + " " + this.item + " ID: " + this.itemIDnum);
+        return ("Priority: " + this.currentPriority + " " + this.item );
     }
     
     public void changePriority(int delta) {
