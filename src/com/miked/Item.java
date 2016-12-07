@@ -1,9 +1,11 @@
 package com.miked;
 
+import java.util.Comparator;
+
 /**
  * Created by miked on 12/5/2016.
  */
-public class Item {
+public class Item implements Comparable<Item>{
 
     private static int IDcounter = 1;
     private static int priority = 1;
@@ -39,7 +41,7 @@ public class Item {
     }
 
     public int getPriority() {
-        return priority;
+        return currentPriority;
     }
 
     public void setPriority(int priority) {
@@ -71,5 +73,13 @@ public class Item {
     public String toString(){
         return ("Priority: " + this.currentPriority + " " + this.item + " ID: " + this.itemIDnum);
     }
-
+    
+    public void changePriority(int delta) {
+        this.currentPriority += delta;
+    }
+    
+    @Override
+    public int compareTo(Item o) {
+        return currentPriority - o.currentPriority;
+    }
 }
